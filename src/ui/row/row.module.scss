@@ -1,0 +1,14 @@
+
+@import '@/style/root';
+@import '@/style/mixin/all';
+
+.row {
+    display: flex;
+    @each $k, $g in $gap-map {
+        &--g-#{$k} {
+            &>* {
+                gap: $g; 
+            }
+        }
+    }
+}

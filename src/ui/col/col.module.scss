@@ -1,0 +1,13 @@
+
+@import '@/style/root';
+@import '@/style/mixin/all';
+
+.col {
+    display: flex;
+    flex-direction: column;
+    @each $k, $g in $gap-map {
+        &--g-#{$k} {
+            gap: $g; 
+        }
+    }
+}
