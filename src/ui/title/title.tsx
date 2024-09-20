@@ -21,6 +21,8 @@ const levels: Levels = {
 }
 
 const Title = forwardRef<HTMLHeadingElement, TitleProps>(({ className, level=2, levelTag=level, children, ...props }, ref) => {
+    console.log(style[`title--${level}`]);
+    
     const cl = classNames(style.title, className, style[`title--${level}`])
 
     const Componet = levels[levelTag]

@@ -1,8 +1,8 @@
 @import '../../style/root.scss';
 @import '../../style/mixin/all';
 
-.tle {
-      margin: 0;
+.title {
+    margin: 0;
     &--1 {
         @include h1;
         margin-bottom: $g;
