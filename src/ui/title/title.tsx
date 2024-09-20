@@ -25,7 +25,7 @@ const Title = forwardRef<HTMLHeadingElement, TitleProps>(({ className, level=2, 
 
     const Componet = levels[levelTag]
     return <Componet ref={ ref } className={ cl } { ...props }>
-        <span className={ style['title__text'] }>{ children }</span>
+        { children }
     </Componet>
 })
 

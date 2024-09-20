@@ -8,9 +8,7 @@ export interface ParagrafProps extends AreaHTMLAttributes<HTMLParagraphElement> 
 const Paragraf: FC<ParagrafProps> = ({ children, className, ...props }) => {
     return (
         <p className={ classNames(style['paragraf'], className) } { ...props }>
-            <span className={ style['paragraf__text'] }>
-                { children }
-            </span>
+            { children }
         </p>
     )
 }

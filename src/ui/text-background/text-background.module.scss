@@ -1,0 +1,16 @@
+
+@import '@/style/root';
+@import '@/style/mixin/all';
+
+.row {
+    white-space: nowrap;
+    display: inline-block;
+    color: $black;
+    background-color: $white;
+    padding: 0 2px;
+    padding-bottom: 2px;
+    transform: translateX(-2px);
+    &:first-child {
+        padding-top: 2px;
+    }
+}
