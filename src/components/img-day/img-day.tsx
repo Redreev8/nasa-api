@@ -7,9 +7,10 @@ import Img from '@/type/img'
 export interface ImgDayProps extends Img {
     title: string
     children: string
+	copy: string
 }
 
-const ImgDay: FC<ImgDayProps> = ({ title, children, src, alt }) => {
+const ImgDay: FC<ImgDayProps> = ({ title, children, src, copy, alt }) => {
     return (
 		<div className={ style['card'] }>
 			<img className={ style['img'] } src={ src } alt={ alt } />
@@ -21,6 +22,11 @@ const ImgDay: FC<ImgDayProps> = ({ title, children, src, alt }) => {
 					{ children }
 				</TextBackground>
 			</Paragraf>
+			<address>
+				<TextBackground classNameContent={ style['text__wrapp'] }>
+					{ copy }
+				</TextBackground>
+			</address>
 		</div>
     )
 }
