@@ -1,0 +1,9 @@
+@import '@/style/root';
+@import '@/style/mixin/all';
+
+.scroll-bar {
+    overflow: hidden;
+}
+.wrapp {
+    display: flex;
+}
