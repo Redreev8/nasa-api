@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import style from './img-day.module.css'
+import style from './img-day.module.scss'
 import Paragraf from "@/ui/paragraf";
 import Title from "@/ui/title";
 import TextBackground from "@/ui/text-background";
