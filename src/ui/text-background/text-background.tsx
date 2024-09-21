@@ -4,9 +4,10 @@ import style from './text-background.module.scss'
 import classNames from 'classnames'
 export interface TextBackgroundProps {
     children: string
+    classNameContent?: string
 }
 
-const TextBackground: FC<TextBackgroundProps> = ({ children }) => {
+const TextBackground: FC<TextBackgroundProps> = ({ children, classNameContent ='' }) => {
     const ref = useRef<HTMLSpanElement>(null)
     const [content, setContent] = useState<JSX.Element[]>([])
     function spreflitLines() {
@@ -35,7 +36,7 @@ const TextBackground: FC<TextBackgroundProps> = ({ children }) => {
         }
     }, [])
     return (
-        <span ref={ ref } className={ classNames(style['text-background']) }>
+        <span ref={ ref } className={ classNames(style['text-background'], { [classNameContent]:  content.length > 0}) }>
             { content.length > 0 ? content : children }
         </span>
     )
