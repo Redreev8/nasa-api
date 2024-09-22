@@ -8,9 +8,10 @@ export interface ImgDayProps extends Img {
     title: string
     children: string
 	copy: string
+	date: string
 }
 
-const ImgDay: FC<ImgDayProps> = ({ title, children, src, copy, alt }) => {
+const ImgDay: FC<ImgDayProps> = ({ title, children, date, src, copy, alt }) => {
     return (
 		<div className={ style['card'] }>
 			<img className={ style['img'] } src={ src } alt={ alt } />
@@ -22,11 +23,16 @@ const ImgDay: FC<ImgDayProps> = ({ title, children, src, copy, alt }) => {
 					{ children }
 				</TextBackground>
 			</Paragraf>
-			<address>
+			<span>
 				<TextBackground classNameContent={ style['text__wrapp'] }>
-					{ copy }
+					{ `${date}` }
 				</TextBackground>
-			</address>
+				<address>
+					<TextBackground classNameContent={ style['text__wrapp'] }>
+						{ `${copy}` }
+					</TextBackground>
+				</address>
+			</span>
 		</div>
     )
 }
