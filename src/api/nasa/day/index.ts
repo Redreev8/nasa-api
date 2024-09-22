@@ -9,4 +9,6 @@ export interface NasaData {
     url: string
 }
 
+export const formatDateNasa = (date: Date) => `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+
 export default `https://api.nasa.gov/planetary/apod?api_key=${process.env.KEY}`
