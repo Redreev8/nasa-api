@@ -1,8 +1,6 @@
 import getFilterUrl, { FiltersUrl } from '@/helper/filter-url'
 import url, { NasaData } from './index'
 
-
-
 export default async (optinal?: RequestInit, filtersUrl?: FiltersUrl): Promise<NasaData[] | string> => {
     'use server'
     try {
