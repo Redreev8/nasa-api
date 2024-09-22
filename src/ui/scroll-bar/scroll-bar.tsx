@@ -6,6 +6,7 @@ export interface ScrollBarProps {
     onToScroll?: (obj: {
         direction: number
         scroll: number
+        maxValue: number
     }) => void
     valueScrool?: number
     initScroll?: number
@@ -29,7 +30,7 @@ const ScrollBar: FC<ScrollBarProps & AreaHTMLAttributes<HTMLDivElement>> =
             const maxValue = refWrapp.current!.clientWidth - refBar.current!.clientWidth
             if (newValue < 0) newValue = 0
             if (newValue > maxValue) newValue = maxValue
-            onToScroll && onToScroll({ direction, scroll: newValue })
+            onToScroll && onToScroll({ direction, scroll: newValue, maxValue })
             return newValue
         })
     }
