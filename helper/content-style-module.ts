@@ -1,5 +1,4 @@
-export default (name: string) => `
-@import '@/style/root';
+export default (name: string) => `@import '@/style/root';
 @import '@/style/mixin/all';
 
 .${name} {}

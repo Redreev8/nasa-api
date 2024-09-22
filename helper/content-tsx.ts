@@ -1,7 +1,7 @@
 import formatWord from "./format-word" 
 
 export default (name: string) => `import { FC } from 'react'
-import style from './${name}.module.css'
+import style from './${name}.module.scss'
 import classNames from 'classnames'
 export interface ${formatWord(name, 'PascalCase')}Props {
 }
