@@ -7,8 +7,6 @@ export interface ColProps extends AreaHTMLAttributes<HTMLDivElement> {
 }
 
 const Col: FC<ColProps> = ({ children, g='g', className, ...props }) => {
-    console.log(style[`col--g-${g}`]);
-    
     return (
         <div className={ classNames(style['col'], className) + ' ' + style[`col--g-${g}`] } { ...props }>
             { children }

@@ -4,15 +4,16 @@ import style from './text-background.module.scss'
 const useTextBackground = (children: string) => {
     const ref = useRef<HTMLSpanElement>(null)
     const [content, setContent] = useState<JSX.Element[]>([])
-    function spreflitLines() {
+    const spreflitLines = () => {
         if (!ref.current) return
-        var spans = ref.current.children,
-        top = 0,
-        tmp: JSX.Element[] = [];
+        setContent(() => [])
+        const spans = ref.current.children
+        const tmp: JSX.Element[] = []
+        let top = 0
         let row: string = ''
         ref.current.innerHTML = children.replace(/\S+/g, '<n>$&</n>');
         for (let i = 0; i < spans.length; i++) {
-            var rect = spans[i].getBoundingClientRect().top;
+            const rect = spans[i].getBoundingClientRect().top;
             if (top < rect && row.length > 0)  {
                 tmp.push(<span key={ row + i } className={ style['row'] }>{ row }</span>)
                 row = ''
@@ -20,15 +21,15 @@ const useTextBackground = (children: string) => {
             top = rect;
             row += spans[i].textContent + ' ';
         }
-        if (row.length > 0) tmp.push(<span className={ style['row'] }>{ row }</span>)
+        if (row.length > 0) tmp.push(<span className={ style['row'] } key={row}>{ row }</span>)
         ref.current.innerHTML = ''
-        setContent(tmp)
+        setContent(() => tmp)
     }
     useEffect(() => {
         if (ref.current) {
             spreflitLines()
         }
-    }, [])
+    }, [children])
 
     return {
         ref,
