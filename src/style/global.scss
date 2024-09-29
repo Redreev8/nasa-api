@@ -3,7 +3,6 @@
 
 body {
     display: flex;
-    align-items: center;
     justify-content: center;
     height: 100vh;
     color: $white;
@@ -26,6 +25,7 @@ body {
     opacity: .9;
     visibility: visible;
     pointer-events: none;
+    z-index: 5;
 }
   
 @keyframes bg-animation {
