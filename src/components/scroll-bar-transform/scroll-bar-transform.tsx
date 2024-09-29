@@ -23,7 +23,7 @@ const ScrollBarTransform: FC<ScrollBarTransformProps> = ({ children }) => {
             return 
         }
         setScroll(
-            (refWrapp.current!.children.length - 2) * document.documentElement.clientHeight
+            (refWrapp.current!.children.length - 1) * document.documentElement.clientHeight
         )
     }
     useEffect(() => {

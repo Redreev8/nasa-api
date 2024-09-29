@@ -25,7 +25,6 @@ const Home = async ({ searchParams }: HompeProps) => {
 	dataWeeks = await Promise.all([
 		new Promise(resolve => resolve(weekControler(nextWeek))),
 		new Promise(resolve => resolve(weekControler(date))),
-		new Promise(resolve => resolve(weekControler(prevWeek))),
 	])
 	return (
 		<ScrollBarTransform>
