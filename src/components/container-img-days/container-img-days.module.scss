@@ -1,0 +1,12 @@
+@import '@/style/root';
+@import '@/style/mixin/all';
+
+.scroll-bar-x {
+    width: 100vw;
+    display: flex;
+    &>div {
+        display: flex;
+        gap: $g-lg;
+        transition: transform 1.2s 0s;
+    }
+}

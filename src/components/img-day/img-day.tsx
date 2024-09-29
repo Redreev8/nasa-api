@@ -27,11 +27,15 @@ const ImgDay: FC<ImgDayProps> = ({ title, children, date, src, copy, alt }) => {
 				<TextBackground classNameContent={ style['text__wrapp'] }>
 					{ `${date}` }
 				</TextBackground>
-				<address>
-					<TextBackground classNameContent={ style['text__wrapp'] }>
-						{ `${copy}` }
-					</TextBackground>
-				</address>
+				{
+					copy && (
+						<address>
+							<TextBackground classNameContent={ style['text__wrapp'] }>
+								{ `${copy}` }
+							</TextBackground>
+						</address>
+					)
+				}
 			</span>
 		</div>
     )

@@ -1,0 +1,7 @@
+@import '@/style/root';
+@import '@/style/mixin/all';
+.scroll-bar {
+    &>div{   
+        transition: transform 1.2s 0s;
+    }
+}
