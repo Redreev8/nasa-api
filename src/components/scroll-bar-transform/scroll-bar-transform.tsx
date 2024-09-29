@@ -14,7 +14,7 @@ const ScrollBarTransform: FC<ScrollBarTransformProps> = ({ children }) => {
     const [scroll, setScroll] = useState(0)
     
     const hen = () => {
-        if (refWrapp.current!.children.length <= 2) return
+        if (refWrapp.current!.children.length <= 1) return
         const childrens = [...refWrapp.current!.children]
         const rectFirstElement = childrens[0]!.getBoundingClientRect()
         if (rectFirstElement.top !== 0) {
