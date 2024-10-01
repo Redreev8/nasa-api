@@ -1,7 +1,7 @@
 import { TouchEvent, useEffect, useRef, useState, WheelEvent } from 'react'
 import { ScrollBarProps } from './scroll-bar'
 
-const useScroll = ({ initScroll=0, onToScroll, os = 'X', valueScrool = 16 }: ScrollBarProps) => {
+const useScroll = ({ initScroll=0, onToScroll, os = 'X', valueScrool = 16 }: Omit<ScrollBarProps, 'onTransitionEnd'>) => {
     const refBar = useRef<HTMLDivElement>(null)
     const refWrapp = useRef<HTMLDivElement>(null)
     const [scroll, setScroll] = useState<number>(initScroll)

@@ -1,5 +1,5 @@
 'use client'
-import { AreaHTMLAttributes, Dispatch, forwardRef, SetStateAction, useEffect } from 'react'
+import { AreaHTMLAttributes, Dispatch, forwardRef, SetStateAction, TransitionEventHandler, useEffect } from 'react'
 import style from './scroll-bar.module.scss'
 import classNames from 'classnames'
 import useScroll from './useScroll'
@@ -17,7 +17,7 @@ export interface ScrollBarProps {
 }
 
 const ScrollBar = forwardRef<HTMLDivElement | null, ScrollBarProps & AreaHTMLAttributes<HTMLDivElement>>(
-    ({ children, initScroll=0, onToScroll, className, os = 'X', valueScrool = 16, ...props }, ref) => {
+    ({ children, initScroll=0, onToScroll, className, os = 'X', valueScrool = 16, onTransitionEnd, ...props }, ref) => {
         const {
             refBar,
             refWrapp,
@@ -38,7 +38,7 @@ const ScrollBar = forwardRef<HTMLDivElement | null, ScrollBarProps & AreaHTMLAtt
         }, [])
         return (
             <div ref={ refBar } onWheel={ hendalScroll } onTouchMove={hendalTouch} className={ classNames(style['scroll-bar'], className) } { ...props }>
-                <div style={{ transform: `translate${os}(${-scroll}px)` }} ref={ refWrapp } className={ classNames(style['wrapp']) }>
+                <div onTransitionEnd={ onTransitionEnd } style={{ transform: `translate${os}(${-scroll}px)` }} ref={ refWrapp } className={ classNames(style['wrapp']) }>
                     { children }
                 </div>
             </div>
