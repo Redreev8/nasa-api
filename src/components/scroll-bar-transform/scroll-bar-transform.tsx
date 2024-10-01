@@ -1,9 +1,9 @@
 'use client'
-import { FC, useEffect, useRef, useState } from 'react'
+import { FC, LegacyRef, useEffect, useRef, useState } from 'react'
 import style from './scroll-bar-transform.module.scss'
 import ScrollBar from '@/ui/scroll-bar'
 import classNames from 'classnames'
-import debounce from '@/helper/debounce'
+import useInVisibilityWindow from '@/hook/useInVisibilityWindow'
 export interface ScrollBarTransformProps {
     children: (JSX.Element | null)[]
 }
@@ -12,22 +12,10 @@ const ScrollBarTransform: FC<ScrollBarTransformProps> = ({ children }) => {
     const refScrollBar= useRef<HTMLDivElement>(null)
     const refWrapp= useRef<HTMLDivElement>(null)
     const [scroll, setScroll] = useState(0)
+    const inVisibility = useInVisibilityWindow<HTMLDivElement>({ set: setScroll})
     
-    const hen = () => {
-        if (refWrapp.current!.children.length <= 1) return
-        const childrens = [...refWrapp.current!.children]
-        const rectFirstElement = childrens[0]!.getBoundingClientRect()
-        if (rectFirstElement.top !== 0) {
-            setScroll(0)
-            debounce(hen, 500)()
-            return 
-        }
-        setScroll(
-            (refWrapp.current!.children.length - 1) * document.documentElement.clientHeight
-        )
-    }
     useEffect(() => {
-        hen()
+        inVisibility(refWrapp.current!)
         return () => {
             setScroll(() => 0)
         }
@@ -42,7 +30,7 @@ const ScrollBarTransform: FC<ScrollBarTransformProps> = ({ children }) => {
                 [style['scroll-bar']]: scroll !== 0
             }) }
         >
-            <div ref={ refWrapp } className={ style['wrapp'] }>
+            <div ref={ refWrapp as LegacyRef<HTMLDivElement> | undefined } className={ style['wrapp'] }>
                 { children }
             </div>
         </ScrollBar>
