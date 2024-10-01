@@ -19,8 +19,8 @@ export const getCurrentDate = (dateStr?: string) : Date => {
 
 const Home = async ({ searchParams }: HompeProps) => {
 	const date = await getCurrentDate(searchParams.date)
-	const prevWeek = new Date(date.getTime() - (8 * 24 * 60 * 60 * 1000))
-	const nextWeek = new Date(date.getTime() + (8 * 24 * 60 * 60 * 1000))
+	const dayWeekNumber = date.getDay() === 0 ? 6 : date.getDay() - 1
+	const nextWeek = new Date(date.getTime() + ((7 - dayWeekNumber) * 24 * 60 * 60 * 1000))
 	let dataWeeks = []	
 	dataWeeks = await Promise.all([
 		new Promise(resolve => resolve(weekControler(nextWeek))),
@@ -30,8 +30,6 @@ const Home = async ({ searchParams }: HompeProps) => {
 		<ScrollBarTransform>
 			{
 				[...dataWeeks].map(el => {
-					console.log(true);
-					
 					if (Array.isArray(el)) return <ContainerImgDays date={ date } data={ el.reverse() } key={ el[0].date } />
 					return null
 				})

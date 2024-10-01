@@ -17,6 +17,7 @@ export default ({ day = 1, month, year, isNext = true, isPrev = true, currentDat
             if (currentDatePrev && currentDatePrev < date) {
                 break
             }
+            
             date.setDate(date.getDate() - 1)
             i++
             days.unshift(new Date(date.getFullYear(), date.getMonth(), date.getDate()))
@@ -24,6 +25,7 @@ export default ({ day = 1, month, year, isNext = true, isPrev = true, currentDat
         date.setDate(date.getDate() + i - 1)
     }
     if (isNext) {
+        
         while(days[days.length - 1].getDay() !== 0) {
             if (
                 currentDateNext && 

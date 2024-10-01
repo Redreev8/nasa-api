@@ -1,35 +1,21 @@
 'use client'
-import { FC, useRef, useState } from 'react'
+import { FC } from 'react'
 import style from './container-img-days.module.scss'
 import ImgDay from "@/components/img-day"
 import ScrollBar from "@/ui/scroll-bar"
-import { formatDateNasa, NasaData } from '@/api/nasa/day'
-import { useRouter,  usePathname } from 'next/navigation'
-import { PropsScroll } from '@/ui/scroll-bar/scroll-bar'
+import { NasaData } from '@/api/nasa/day'
 import Btn from '@/ui/btn'
+import useContainerImgDays from './useContainerImgDays'
+
 export interface ContainerImgDaysProps {
     data: NasaData[]
 	date: Date
 }
 
 const ContainerImgDays: FC<ContainerImgDaysProps> = ({ data, date }) => {
-	const ref = useRef<HTMLDivElement>(null)
-	const [scroll, setScroll] = useState<number>(0)
-	const router = useRouter()
-    const pathname = usePathname()
-	const nextData = () => `?date=${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
-	const handelScrollTransitionEnd = () => {
-		date.setDate(date.getDate() - 7)
-		router.push(pathname + nextData())
-		ref.current?.removeEventListener('transitionend', handelScrollTransitionEnd)
-		setScroll(0)
-	}
-	const handelColick = () => {
-		setScroll(() => 20)
-		ref.current?.addEventListener('transitionend', handelScrollTransitionEnd)
-	}
+	const { scroll, ref, handelClick, handelTransitionEnd } = useContainerImgDays({ data, date })
     return (
-		<ScrollBar valueScrool={ 2200 } initScroll={ scroll } ref={ ref } className={ style['scroll-bar-x'] }>
+		<ScrollBar onTransitionEnd={ handelTransitionEnd } valueScrool={ 2400 } initScroll={ scroll } ref={ ref } className={ style['scroll-bar-x'] }>
 			{
 				data.map(el => (
 					<ImgDay title={ el.title } copy={ el.copyright } date={ el.date } src={ el.url } alt={ el.copyright } key={ el.date }>
@@ -37,7 +23,7 @@ const ContainerImgDays: FC<ContainerImgDaysProps> = ({ data, date }) => {
 					</ImgDay>
 				))
 			}
-			<Btn onClick={handelColick}>
+			<Btn onClick={handelClick}>
 				next
 			</Btn>
 		</ScrollBar>
