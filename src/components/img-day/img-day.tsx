@@ -25,13 +25,13 @@ const ImgDay: FC<ImgDayProps> = ({ title, children, date, src, copy, alt }) => {
 			</Paragraf>
 			<span>
 				<TextBackground classNameContent={ style['text__wrapp'] }>
-					{ `${date}` }
+					{ date.split('-').reverse().join('.').replaceAll(/\n/g, '') }
 				</TextBackground>
 				{
 					copy && (
 						<address>
 							<TextBackground classNameContent={ style['text__wrapp'] }>
-								{ `${copy}` }
+								{ copy.replaceAll(/\n/g, '') }
 							</TextBackground>
 						</address>
 					)
