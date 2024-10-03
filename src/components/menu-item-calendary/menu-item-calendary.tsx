@@ -6,10 +6,8 @@ import Btn from '@/ui/btn'
 import Calendary from '@/ui/calendary'
 import useMenuItemCalendary from './useMenuItemCalendary'
 import CalendaryTitle from '@/ui/calendary-title'
-export interface MenuItemCalendaryProps {
-}
 
-const MenuItemCalendary: FC<MenuItemCalendaryProps> = ({}) => {
+const MenuItemCalendary: FC = () => {
     const { data, month, year, changeDay, changeMonth } = useMenuItemCalendary()
     return (
         <div className={ classNames(style['menu-item-calendary']) }>

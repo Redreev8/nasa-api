@@ -17,5 +17,5 @@ export const formatDateNasa = (date: Date | DayObj) => {
     }
     return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
 }
-
-export default `https://api.nasa.gov/planetary/apod?api_key=${process.env.KEY}`
+const urlNasaDay = `https://api.nasa.gov/planetary/apod?api_key=${process.env.KEY}`
+export default urlNasaDay

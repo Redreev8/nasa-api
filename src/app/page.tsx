@@ -1,22 +1,14 @@
 'use server'
-import ContainerImgDays from "@/components/container-img-days"
-import ScrollBarTransform from "@/components/scroll-bar-transform"
-import weekControler from "@/controller/weeks.controlers"
-interface HompeProps {
-	params: {},
+import ContainerImgDays from '@/components/container-img-days'
+import ScrollBarTransform from '@/components/scroll-bar-transform'
+import weekControler from '@/controller/weeks.controlers'
+import getCurrentDate from '@/helper/getCurrentDate'
+
+export interface HompeProps {
 	searchParams: {
 		date?: string,
 	}, 
 }
-
-export const getCurrentDate = (dateStr?: string) : Date => {
-	if (!dateStr) return new Date()
-	
-	const currentDateArr = dateStr.split('-')
-	return new Date(+currentDateArr[0], +currentDateArr[1]-1, +currentDateArr[2])
-}
-
-
 const Home = async ({ searchParams }: HompeProps) => {
 	const date = await getCurrentDate(searchParams.date)
 	const dayWeekNumber = date.getDay() === 0 ? 6 : date.getDay() - 1

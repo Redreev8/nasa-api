@@ -1,5 +1,5 @@
 'use client'
-import { AreaHTMLAttributes, Dispatch, forwardRef, SetStateAction, TransitionEventHandler, useEffect } from 'react'
+import { AreaHTMLAttributes, Dispatch, forwardRef, SetStateAction, useEffect } from 'react'
 import style from './scroll-bar.module.scss'
 import classNames from 'classnames'
 import useScroll from './useScroll'
@@ -17,7 +17,16 @@ export interface ScrollBarProps {
 }
 
 const ScrollBar = forwardRef<HTMLDivElement | null, ScrollBarProps & AreaHTMLAttributes<HTMLDivElement>>(
-    ({ children, initScroll=0, onToScroll, className, os = 'X', valueScrool = 16, onTransitionEnd, ...props }, ref) => {
+    function ScrollBarRef({ 
+        children, 
+        initScroll=0, 
+        onToScroll, 
+        className, 
+        os = 'X', 
+        valueScrool = 16, 
+        onTransitionEnd, 
+        ...props }, ref
+    ) {
         const {
             refBar,
             refWrapp,

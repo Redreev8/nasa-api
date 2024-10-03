@@ -1,7 +1,7 @@
-export default (cb: Function, ms: number) => {
+export default <T>(cb: (...props: T[]) => void, ms: number) => {
     let timer: ReturnType<typeof setTimeout>
 
-    return (...props: any[]) => {
+    return (...props: T[]) => {
         if (timer) clearTimeout(timer)
         timer = setTimeout(() => cb(...props), ms)
     }

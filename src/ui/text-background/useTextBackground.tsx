@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import style from './text-background.module.scss'
 
 const useTextBackground = (children: string) => {
@@ -26,9 +26,7 @@ const useTextBackground = (children: string) => {
         setContent(() => tmp)
     }
     useEffect(() => {
-        if (ref.current) {
-            spreflitLines()
-        }
+        spreflitLines()
     }, [children])
 
     return {

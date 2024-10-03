@@ -8,7 +8,7 @@ export interface TableProps {
 }
 export type DataTable = ReactNode[] | JSX.Element[]
 
-const Table = forwardRef<HTMLTableElement, TableProps>(({ className, th, data }, ref) => {
+const Table = forwardRef<HTMLTableElement, TableProps>(function TableRef({ className, th, data }, ref) {
     const cl = classNames(style.table, className)
 
     return (

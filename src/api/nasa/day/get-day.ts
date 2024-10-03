@@ -1,7 +1,7 @@
 import getFilterUrl, { FiltersUrl } from '@/helper/filter-url'
 import url, { NasaData } from './index'
 
-export default async (optinal?: RequestInit, filtersUrl?: FiltersUrl): Promise<NasaData[] | string> => {
+const getDay = async (optinal?: RequestInit, filtersUrl?: FiltersUrl): Promise<NasaData[] | string> => {
     'use server'
     try {
         const res = await fetch(url + (filtersUrl ? getFilterUrl(filtersUrl!, '&') : ''), optinal)
@@ -14,3 +14,5 @@ export default async (optinal?: RequestInit, filtersUrl?: FiltersUrl): Promise<N
         return 'error'
     }
 }
+
+export default getDay

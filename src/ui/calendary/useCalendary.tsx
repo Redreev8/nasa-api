@@ -29,6 +29,7 @@ const useCalendary = ({ data, day = 1, month, year, onClick } : CalendaryProps) 
                     onClick={ (e) => onClick && onClick(e, day) }
                     month={ month }
                     day={ day }
+                    key={ `${day.year}${day.month}${day.day}` }
                 >
                 </CalendaryBtn>
             )

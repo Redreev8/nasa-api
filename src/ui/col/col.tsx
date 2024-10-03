@@ -1,4 +1,4 @@
-import { AreaHTMLAttributes, Attributes, FC, ReactNode } from 'react'
+import { AreaHTMLAttributes, FC, ReactNode } from 'react'
 import style from './col.module.scss'
 import classNames from 'classnames'
 export interface ColProps extends AreaHTMLAttributes<HTMLDivElement> {

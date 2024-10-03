@@ -18,17 +18,19 @@ export interface CalendaryProps extends PropsGetDaysWeek {
     data?: CalendaryData
 }
 
-const Calendary = forwardRef<HTMLTableElement, CalendaryProps>(({ day = 1, month, year, data, className, onClick }, ref) => {
-    const { ths, DataTable } = useCalendary({ day, month, year, data, onClick })
+const Calendary = forwardRef<HTMLTableElement, CalendaryProps>(
+    function CalendatyRef({ day = 1, month, year, data, className, onClick }, ref) {
+        const { ths, DataTable } = useCalendary({ day, month, year, data, onClick })
 
-    return (
-        <Table
-            className={ classNames(className, style.table) }
-            ref={ ref }
-            th={ ths() }
-            data={ DataTable() }
-        />
-    )
-})
+        return (
+            <Table
+                className={ classNames(className, style.table) }
+                ref={ ref }
+                th={ ths() }
+                data={ DataTable() }
+            />
+        )
+    }
+)
 
 export default Calendary

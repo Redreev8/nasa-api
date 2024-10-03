@@ -1,14 +1,13 @@
 import debounce from '@/helper/debounce'
-import { Dispatch, RefObject, SetStateAction } from 'react'
+import { Dispatch, SetStateAction } from 'react'
 
-interface Props<N extends HTMLElement = HTMLElement > {
+interface Props {
     set: Dispatch<SetStateAction<number>>
     direction?: 'top' | 'left' | 'bottom' | 'right'
     ms?: number,
-    indexChild?: number 
 }
 const useInVisibilityWindow = 
-<N extends HTMLElement = HTMLElement >({ set, ms = 500, direction = 'top', indexChild = 1 }: Props<N>) => {
+<N extends HTMLElement = HTMLElement >({ set, ms = 500, direction = 'top' }: Props) => {
     const inVisibility = (node: N) => {
         if (node.children.length <= 1) return
         const childrens = [...node.children]

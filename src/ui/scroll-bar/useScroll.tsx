@@ -18,7 +18,7 @@ const useScroll = ({ initScroll=0, onToScroll, os = 'X', valueScrool = 16 }: Omi
             const maxValue = refWrapp.current!.clientWidth - refBar.current!.clientWidth
             if (newValue < 0) newValue = 0
             if (newValue > maxValue) newValue = maxValue
-            onToScroll && onToScroll({ direction, scroll: newValue, setScroll, maxValue })
+            if (onToScroll) onToScroll({ direction, scroll: newValue, setScroll, maxValue })
             return newValue
         })
     }

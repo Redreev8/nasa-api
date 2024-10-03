@@ -4,7 +4,7 @@ export interface PropsGetDaysWeek<T = DayObj> extends  Omit<PropsGetDaysMoth<T>,
     today?: Date
     isPrew?: boolean
     isNext?: boolean
-    template?: (props: DayObj) => any,
+    template?: <T>(props: DayObj) => T,
 }
 
 type DayWeek = DayObj[]
@@ -19,7 +19,7 @@ const getDaysWeek = ({
     isNext,
     template
 }: PropsGetDaysWeek) : DayWeek[] => {
-    let { days, week } = getDaysMoth<DayWeek>({
+    const data: { days: DayWeek[], week: number } = getDaysMoth<DayWeek>({
         day, 
         year, 
         month,
@@ -39,6 +39,8 @@ const getDaysWeek = ({
                 today.getFullYear() === year,
         })
     })
+    const { days } = data
+    let { week } = data
     if (!days[0]) return [[]]
     if (week > days.length - 1) week = days.length - 1
     if (isPrew) {

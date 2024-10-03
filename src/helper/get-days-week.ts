@@ -36,3 +36,5 @@ const getWeekDay = ({ day = 1, month, year }: Omit<DayObj, 'weekDay' | 'week'>):
 
     return days
 }
+
+export default getWeekDay
