@@ -1,0 +1,17 @@
+@import '../../style/root.scss';
+
+.calendary-title {
+    display: flex;
+    align-items: center;
+    gap: $g-md;
+    padding: $g-md;
+
+    & &__moth {
+        width: 190px;
+        margin: 0;
+    }
+    &__btn {    
+        justify-content: center;
+        width: 100px;
+    }
+}

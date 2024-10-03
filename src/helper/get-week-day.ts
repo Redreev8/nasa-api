@@ -25,7 +25,6 @@ export default ({ day = 1, month, year, isNext = true, isPrev = true, currentDat
         date.setDate(date.getDate() + i - 1)
     }
     if (isNext) {
-        
         while(days[days.length - 1].getDay() !== 0) {
             if (
                 currentDateNext && 

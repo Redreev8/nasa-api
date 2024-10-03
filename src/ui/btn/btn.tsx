@@ -5,6 +5,7 @@ import classNames from 'classnames'
 
 export interface Props {
     href?: string
+    isFilled?: boolean
 }
 
 export type ButtonProps = Props & ButtonHTMLAttributes<HTMLButtonElement>
@@ -15,8 +16,10 @@ const A = forwardRef<HTMLAnchorElement, LinkProps>(({ children, ...props }, ref)
 
 
 const Btn = forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkProps | ButtonProps>(
-({ className, children, href, ...props }, ref) => {
-    const cl = classNames(style.btn, className, {})
+({ className, children, href, isFilled, ...props }, ref) => {
+    const cl = classNames(style.btn, className, {
+        [style['filled']]: isFilled
+    })
     if (href)  {
         return (
             <A { ...props as LinkProps } href={ href } ref={ (ref as ForwardedRef<HTMLAnchorElement>) } className={ cl }>

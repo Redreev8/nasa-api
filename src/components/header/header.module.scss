@@ -1,0 +1,11 @@
+@import '@/style/root';
+@import '@/style/mixin/all';
+
+.header {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 60px;
+    z-index: 10;
+}

@@ -1,9 +1,9 @@
 import { forwardRef, ReactNode } from 'react'
 import style from './table.module.scss'
 import classNames from 'classnames'
-interface TableProps {
+export interface TableProps {
     className?: string
-    th: ReactNode[]
+    th: ReactNode[][]
     data: DataTable[]
 }
 export type DataTable = ReactNode[] | JSX.Element[]
@@ -13,12 +13,16 @@ const Table = forwardRef<HTMLTableElement, TableProps>(({ className, th, data },
 
     return (
         <table ref={ ref } className={ cl }>
-            <thead>
-                <tr className={ classNames(style.tr) }>
-                    {
-                        th.map(t => <th className={ classNames(style.ceil) }>{ t }</th>)
-                    }
-                </tr>
+            <thead className={ style.thead }>
+                {
+                    th.map((tr, i) => (
+                        <tr key={ i } className={ classNames(style.tr) }>
+                            { tr.map((th, k) => (
+                                    <th className={ classNames(style.ceil) } key={ k }>{ th }</th>
+                            )) }
+                        </tr>
+                    ))
+                }
             </thead>
             <tbody>
                 {

@@ -1,20 +1,24 @@
 @import '@/style/root.scss';
+@import '@/style/mixin/all';
 
 .table {
     width: 100%;
     height: 100%;
-    text-align: left;
     border-collapse: collapse;
     margin: 0;
     padding: 0;
+    background-color: $black;
+    border: $border-line;
     box-sizing: border-box;
     table-layout: fixed;
 }
 
-thead {
+.thead {
     border-top: $border-line;
     border-bottom: $border-line;
     & th {
+        @include text;
+        font-weight: 400;
         padding: $g-md;
     }
 }

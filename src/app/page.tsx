@@ -29,8 +29,8 @@ const Home = async ({ searchParams }: HompeProps) => {
 	return (
 		<ScrollBarTransform>
 			{
-				[...dataWeeks].map(el => {
-					if (Array.isArray(el)) return <ContainerImgDays date={ date } data={ el.reverse() } key={ el[0].date } />
+				[...dataWeeks].map((el, i) => {
+					if (Array.isArray(el)) return <ContainerImgDays isActive={ i===1 } date={ date } data={ el.reverse() } key={ el[0].date } />
 					return null
 				})
 			}

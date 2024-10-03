@@ -1,21 +1,29 @@
-import { forwardRef, ReactNode } from 'react'
-import { PropsGetDaysWeek } from '../../helper/get-days-week-moth'
+import { forwardRef, MouseEvent, ReactNode } from 'react'
+import style from './calendary.module.scss'
+import { PropsGetDaysWeek } from '@/helper/get-days-week-moth'
 import Table from '../table'
 import useCalendary from './useCalendary'
-
-export interface CalendaryProps extends PropsGetDaysWeek {
-    data: {
+import classNames from 'classnames'
+import { DayObj } from '@/helper/get-days-moth'
+export interface CalendaryData {
+    [key: number]: {
         [key: number]: {
             [key: number]: ReactNode
         }
     }
 }
+export interface CalendaryProps extends PropsGetDaysWeek {
+    className?: string
+    onClick?: (e: MouseEvent<HTMLButtonElement>, day: DayObj) => void 
+    data?: CalendaryData
+}
 
-const Calendary = forwardRef<HTMLTableElement, CalendaryProps>(({ day = 1, month, year, data }, ref) => {
-    const { ths, DataTable } = useCalendary({ day, month, year, data })
+const Calendary = forwardRef<HTMLTableElement, CalendaryProps>(({ day = 1, month, year, data, className, onClick }, ref) => {
+    const { ths, DataTable } = useCalendary({ day, month, year, data, onClick })
 
     return (
         <Table
+            className={ classNames(className, style.table) }
             ref={ ref }
             th={ ths() }
             data={ DataTable() }

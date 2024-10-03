@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Yanone_Kaffeesatz } from "next/font/google";
 import '@/style/global.scss'
+import Header from "@/components/header";
 
 const yanoneKaffeesatz = Yanone_Kaffeesatz({
 	weight: '400',
@@ -19,6 +20,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={`${yanoneKaffeesatz.className}`}>
+				<Header/>
 				<div className="bg">
 					
 				</div>

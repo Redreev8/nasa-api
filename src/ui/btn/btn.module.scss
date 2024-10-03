@@ -13,7 +13,6 @@
     background-size: 100% 0; 
     padding: $g-md;
     border: $border-line;
-    opacity: 1;
     transition: background-size .6s .0s,
                 opacity .6s .0s,
                 color .6s 0s;
@@ -31,4 +30,14 @@
         background-size: 100% 100%;
         opacity: .6;
     }
+    &:disabled {
+        color: $black;
+        background-size: 100% 100%;
+    }
+}
+
+.filled {
+    color: $white;
+    background-color: $black;
+    border: none;
 }
