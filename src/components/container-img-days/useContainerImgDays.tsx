@@ -38,8 +38,7 @@ const useContainerImgDays = ({ date, isActive }: ContainerImgDaysProps) => {
 			const wrapp = ref.current.children[0]
 			const index = date.getDay() === 0 ? 0 : wrapp.children.length - date.getDay() - 1
 			const currentImg = wrapp.children[index]
-			console.log( );
-			
+
 			if (!currentImg) return
 			const { left } = currentImg.getBoundingClientRect()
 			const maxWidth = wrapp.clientWidth - document.documentElement['clientWidth']

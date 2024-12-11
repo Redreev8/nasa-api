@@ -18,6 +18,7 @@ const Home = async ({ searchParams }: HompeProps) => {
 		new Promise(resolve => resolve(weekControler(nextWeek))),
 		new Promise(resolve => resolve(weekControler(date))),
 	])
+	
 	return (
 		<ScrollBarTransform>
 			{
