@@ -4,6 +4,7 @@ export interface DayObj {
     month: number
     year: number
     week: number
+    isHiden: boolean
 }
 
 export interface PropsGetDaysMoth<T = DayObj> {
@@ -11,6 +12,8 @@ export interface PropsGetDaysMoth<T = DayObj> {
     year: number,
     month: number,
     maxDay?: number,
+    maxDate?: [number, number, number], 
+    minDate?: [number, number, number],
     push?: (days: T[], data: DayObj) => void,
     template?: (props: DayObj) => any,
 }
@@ -24,6 +27,8 @@ const getDaysMoth = <T = DayObj>({
     day = 1, 
     year, 
     month,
+    maxDate,
+    minDate,
     maxDay = 31,
     push = (days, data) => { days.push(data as T) },
     template = ({ day }) => day,
@@ -32,6 +37,14 @@ const getDaysMoth = <T = DayObj>({
     const date = new Date(year, month, day)
     let week = 0
     let numberDays = 0
+    console.log('====');
+    console.log(year);
+    console.log(maxDate);
+    console.log(maxDate && 
+        maxDate[0] <= date.getDate() &&
+        maxDate[1] <=  date.getMonth() &&
+        maxDate[2] <=  date.getFullYear());
+    
     while (date.getMonth() === month && maxDay > numberDays) {
         numberDays += 1
         const day = date.getDate()
@@ -41,7 +54,20 @@ const getDaysMoth = <T = DayObj>({
             weekDay,
             month,
             year,
-            week
+            week,
+            isHiden: false
+        }
+        if (
+            (maxDate && 
+            ((maxDate[0] < date.getDate() && maxDate[1] <= date.getMonth() && maxDate[2] >= date.getFullYear()) ||
+            (maxDate[2] < date.getFullYear()))
+            ) ||
+            (minDate && 
+            ((minDate[0] > date.getDate() && minDate[1] >= date.getMonth() && minDate[2] <= date.getFullYear()) ||
+            (minDate[2] > date.getFullYear()))
+            )
+        ) {
+            props.isHiden = true
         }
         const obj = template(props)
         push(days, obj)

@@ -3,12 +3,23 @@ import style from './table.module.scss'
 import classNames from 'classnames'
 export interface TableProps {
     className?: string
+    classNameTh?: string
+    classNameTdBody?: string
     th: ReactNode[][]
     data: DataTable[]
 }
 export type DataTable = ReactNode[] | JSX.Element[]
 
-const Table = forwardRef<HTMLTableElement, TableProps>(function TableRef({ className, th, data }, ref) {
+const Table = forwardRef<HTMLTableElement, TableProps>(function TableRef(
+    { 
+        className, 
+        classNameTh, 
+        classNameTdBody, 
+        th, 
+        data 
+    }, 
+    ref
+) {
     const cl = classNames(style.table, className)
 
     return (
@@ -16,9 +27,9 @@ const Table = forwardRef<HTMLTableElement, TableProps>(function TableRef({ class
             <thead className={ style.thead }>
                 {
                     th.map((tr, i) => (
-                        <tr key={ i } className={ classNames(style.tr) }>
+                        <tr key={ i } className={ style.tr }>
                             { tr.map((th, k) => (
-                                    <th className={ classNames(style.ceil) } key={ k }>{ th }</th>
+                                    <th className={ classNames(style.ceil, classNameTh) } key={ k }>{ th }</th>
                             )) }
                         </tr>
                     ))
@@ -30,8 +41,7 @@ const Table = forwardRef<HTMLTableElement, TableProps>(function TableRef({ class
                         <tr className={ classNames(style.tr) } key={ i }>
                             {
                                 tr.map((td, k) => (
-                                    <td className={classNames(style.ceil, {
-                                    }) } key={`${i}${k}`}>
+                                    <td className={classNames(style.ceil, classNameTdBody) } key={`${i}${k}`}>
                                         { td }
                                     </td>
                                 ))

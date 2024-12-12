@@ -15,6 +15,8 @@ const getDaysWeek = ({
     month, 
     today = new Date(), 
     maxDay,
+    maxDate, 
+    minDate,
     isPrew,
     isNext,
     template
@@ -24,6 +26,8 @@ const getDaysWeek = ({
         year, 
         month,
         maxDay,
+        maxDate, 
+        minDate,
         push: (days, data) => {
             if (data.weekDay === 1 || days.length === 0) {
                 days.push([ data ])
@@ -51,6 +55,8 @@ const getDaysWeek = ({
             month: month - 1 < 0 ? 11 : month - 1,
             day: prevStartDay,
             today,
+            maxDate, 
+            minDate, 
             maxDay: 7 - days[0].length
         })
         days[0] = [
@@ -63,6 +69,8 @@ const getDaysWeek = ({
             year: month === 11 ? year + 1 : year,
             month: month === 11 ? 0 : month + 1,
             today,
+            maxDate,
+            minDate,
             maxDay: 7 - days[week].length
         })
         days[week] = [

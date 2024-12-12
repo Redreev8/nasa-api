@@ -4,12 +4,11 @@ import CalendaryBtn from './calendary-btn'
 import { TableProps } from '../table/table'
 import DaysWeek from '@/helper/days-week'
 
-const useCalendary = ({ data, day = 1, month, year, onClick } : CalendaryProps) => {
+const useCalendary = ({ data, day = 1, month, year, maxDate, minDate, onClick } : CalendaryProps) => {
     const getContent = (year: number, month: number, day: number) => {
         if (!data) return
         if (!data[`${year}`]) return        
         if (!data[`${year}`][`${month}`]) return
-        if (!data[`${year}`][`${month}`][`${day}`]) return
         return data[`${year}`][`${month}`][`${day}`]
     }
     const ths = () : TableProps['th'] => {
@@ -20,20 +19,23 @@ const useCalendary = ({ data, day = 1, month, year, onClick } : CalendaryProps) 
         }
         return ths
     }
-
+    
     const DataTable = () => {
-        const weeks = getDaysWeek({ day, month, year, isNext: true, isPrew: true  })
-        return weeks.map(week => week.map(day => (
-            getContent(day.year, day.month, day.day) ?? (
-                <CalendaryBtn
-                    onClick={ (e) => onClick && onClick(e, day) }
-                    month={ month }
-                    day={ day }
-                    key={ `${day.year}${day.month}${day.day}` }
-                >
-                </CalendaryBtn>
+        const weeks = getDaysWeek({ day, month, year, maxDate, minDate, isNext: true, isPrew: true  })
+        return weeks.map(week => week.map(day => {
+            if (day.isHiden) return
+            return (
+                getContent(day.year, day.month, day.day) ?? (
+                    <CalendaryBtn
+                        onClick={ (e) => onClick && onClick(e, day) }
+                        month={ month }
+                        day={ day }
+                        key={ `${day.year}${day.month}${day.day}` }
+                    >
+                    </CalendaryBtn>
+                )
             )
-        )))
+        }))
     }  
     return {
         ths,

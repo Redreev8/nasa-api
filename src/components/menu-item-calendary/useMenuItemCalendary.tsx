@@ -9,7 +9,7 @@ import { formatDateNasa } from '@/api/nasa/day'
 
 const useMenuItemCalendary = () => {
     const [data, setData] = useState<CalendaryData>({})
-    const [date, setDate] = useState<Date>(new Date)
+    const [date, setDate] = useState<Date>(new Date())
     const [month, setMonth] = useState<number>(new Date().getMonth())
 	const [year, setYear] = useState<number>(new Date().getFullYear())
     const router = useRouter()
@@ -48,6 +48,7 @@ const useMenuItemCalendary = () => {
                         year: el.getFullYear(),
                         weekDay: el.getDay(),
                         week: el.getDay(),
+                        isHiden: true
                     }}
                 >
                 </CalendaryBtn>
