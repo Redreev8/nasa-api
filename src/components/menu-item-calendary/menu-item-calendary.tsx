@@ -9,9 +9,7 @@ import CalendaryTitle from '@/ui/calendary-title'
 
 const MenuItemCalendary: FC = () => {
     const { data, month, year, changeDay, changeMonth } = useMenuItemCalendary()
-    const currentDate = new Date()
-    console.log([currentDate.getDate(), currentDate.getMonth(), currentDate.getFullYear()]);
-    
+    const currentDate = new Date()    
     return (
         <div className={ classNames(style['menu-item-calendary']) }>
             <Btn isFilled className={ classNames(style['btn']) }>
