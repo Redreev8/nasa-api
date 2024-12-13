@@ -37,13 +37,6 @@ const getDaysMoth = <T = DayObj>({
     const date = new Date(year, month, day)
     let week = 0
     let numberDays = 0
-    console.log('====');
-    console.log(year);
-    console.log(maxDate);
-    console.log(maxDate && 
-        maxDate[0] <= date.getDate() &&
-        maxDate[1] <=  date.getMonth() &&
-        maxDate[2] <=  date.getFullYear());
     
     while (date.getMonth() === month && maxDay > numberDays) {
         numberDays += 1
@@ -59,11 +52,11 @@ const getDaysMoth = <T = DayObj>({
         }
         if (
             (maxDate && 
-            ((maxDate[0] < date.getDate() && maxDate[1] <= date.getMonth() && maxDate[2] >= date.getFullYear()) ||
+            ((maxDate[0] < date.getDate() && maxDate[1] <= date.getMonth() && maxDate[2] <= date.getFullYear()) ||
             (maxDate[2] < date.getFullYear()))
             ) ||
             (minDate && 
-            ((minDate[0] > date.getDate() && minDate[1] >= date.getMonth() && minDate[2] <= date.getFullYear()) ||
+            ((minDate[0] > date.getDate() && minDate[1] >= date.getMonth() && minDate[2] >= date.getFullYear()) ||
             (minDate[2] > date.getFullYear()))
             )
         ) {
