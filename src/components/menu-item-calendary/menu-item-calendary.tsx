@@ -18,6 +18,7 @@ const MenuItemCalendary: FC = () => {
             <div className={ style['calendary'] }>
                 <CalendaryTitle
                     className={ style['calendary__title'] }
+                    maxDate={[0, 2025]}
                     onClick={ changeMonth }
                     month={month}
                     year={year}

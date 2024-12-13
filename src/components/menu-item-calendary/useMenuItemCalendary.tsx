@@ -21,7 +21,8 @@ const useMenuItemCalendary = () => {
     }
     const changeMonth = (newMonth: number) => {
 		setMonth(() => newMonth)
-		setYear(prev => {
+        
+		setYear(prev => {            
 			if (month === 0 && newMonth === 11) return prev -= 1
 			if (month === 11 && newMonth === 0) return prev += 1
 			return prev
