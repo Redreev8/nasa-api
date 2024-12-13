@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Yanone_Kaffeesatz } from "next/font/google";
 import '@/style/global.scss'
 import Header from "@/components/header";
+import { Suspense } from "react";
 
 const yanoneKaffeesatz = Yanone_Kaffeesatz({
 	weight: '400',
@@ -20,11 +21,11 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={`${yanoneKaffeesatz.className}`}>
-				<Header/>
-				<div className="bg">
-					
-				</div>
-				{children}
+				<Suspense fallback={<></>}>
+					<Header/>
+					<div className="bg"/>					
+					{children}
+				</Suspense>
 			</body>
 		</html>
 	);
