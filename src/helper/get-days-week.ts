@@ -7,7 +7,8 @@ const getWeekDay = ({ day = 1, month, year }: Omit<DayObj, 'weekDay' | 'week'>):
         month: date.getMonth(),
         year: date.getFullYear(),
         weekDay: date.getDay(),
-        week: 0
+        week: 0,
+        isHiden: false
     }]
     let i = 1
     
@@ -18,7 +19,8 @@ const getWeekDay = ({ day = 1, month, year }: Omit<DayObj, 'weekDay' | 'week'>):
             month: date.getMonth(),
             year: date.getFullYear(),
             weekDay: date.getDay(),
-            week: 0 
+            week: 0,
+            isHiden: false 
         })
         i++
     }
@@ -30,7 +32,8 @@ const getWeekDay = ({ day = 1, month, year }: Omit<DayObj, 'weekDay' | 'week'>):
             month: date.getMonth(),
             year: date.getFullYear(),
             weekDay: date.getDay(),
-            week: 0 
+            week: 0,
+            isHiden: false 
         })
     }
 
