@@ -11,7 +11,7 @@ const yanoneKaffeesatz = Yanone_Kaffeesatz({
 
 export const metadata: Metadata = {
 	title: "Img day",
-	description: "img day nasa",
+	description: "img day nasa in api",
 };
 export default function RootLayout({
 	children,
