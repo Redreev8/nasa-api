@@ -31,8 +31,10 @@ const ScrollBar = forwardRef<HTMLDivElement | null, ScrollBarProps & AreaHTMLAtt
             refBar,
             refWrapp,
             scroll,
+            handelTouchStart,
+            handelTouchEnd,
             hendalScroll,
-            hendalTouch
+            hendalTouchMove
         } = useScroll({ initScroll, onToScroll, os, valueScrool })
         useEffect(() => {
             if (typeof ref === 'function') {
@@ -46,8 +48,21 @@ const ScrollBar = forwardRef<HTMLDivElement | null, ScrollBarProps & AreaHTMLAtt
             }
         }, [])
         return (
-            <div ref={ refBar } onWheel={ hendalScroll } onTouchMove={hendalTouch} className={ classNames(style['scroll-bar'], className) } { ...props }>
-                <div onTransitionEnd={ onTransitionEnd } style={{ transform: `translate${os}(${-scroll}px)` }} ref={ refWrapp } className={ classNames(style['wrapp']) }>
+            <div 
+                ref={ refBar } 
+                onWheel={ hendalScroll } 
+                onTouchStart={ handelTouchStart }
+                onTouchEnd={ handelTouchEnd }
+                onTouchMove={hendalTouchMove} 
+                className={ classNames(style['scroll-bar'], className) } 
+                { ...props }
+            >
+                <div 
+                    onTransitionEnd={ onTransitionEnd } 
+                    style={{ transform: `translate${os}(${-scroll}px)` }} 
+                    ref={ refWrapp } 
+                    className={ classNames(style['wrapp']) }
+                >
                     { children }
                 </div>
             </div>
