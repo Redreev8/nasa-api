@@ -1,5 +1,6 @@
 import { TouchEvent, useEffect, useRef, useState, WheelEvent } from 'react'
 import { ScrollBarProps } from './scroll-bar'
+import debounce from '@/helper/debounce'
 
 const useScroll = ({ initScroll=0, onToScroll, os = 'X', valueScrool = 16 }: Omit<ScrollBarProps, 'onTransitionEnd'>) => {
     const refBar = useRef<HTMLDivElement>(null)
@@ -22,11 +23,17 @@ const useScroll = ({ initScroll=0, onToScroll, os = 'X', valueScrool = 16 }: Omi
             return newValue
         })
     }
-    const hendalTouch = (e: TouchEvent<HTMLDivElement>) => {
-        if (valueScrool === 0) return
-        if(e.touches[0][`client${os}`] < refTouch.current.prev) toScroll(0.25)
-        if(e.touches[0][`client${os}`] > refTouch.current.prev) toScroll(-0.25)
+    const handelTouchStart = (e: TouchEvent<HTMLDivElement>) => {
         refTouch.current.prev = e.touches[0][`client${os}`]
+    }
+    const handelTouchEnd = () => {
+        refTouch.current.prev = 0
+    }
+    const hendalTouchMove = (e: TouchEvent<HTMLDivElement>) => {
+        if (valueScrool === 0) return
+        const scroll = (refTouch.current.prev - e.touches[0][`client${os}`]) / 1000
+        if(e.touches[0][`client${os}`] < refTouch.current.prev) toScroll(scroll)
+        if(e.touches[0][`client${os}`] > refTouch.current.prev) toScroll(scroll)
     }
 
     useEffect(() => {
@@ -37,8 +44,10 @@ const useScroll = ({ initScroll=0, onToScroll, os = 'X', valueScrool = 16 }: Omi
         refBar,
         refWrapp,
         scroll,
+        handelTouchStart,
+        handelTouchEnd,
         hendalScroll,
-        hendalTouch
+        hendalTouchMove
     }
 }
 
