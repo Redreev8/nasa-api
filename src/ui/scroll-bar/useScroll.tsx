@@ -1,6 +1,5 @@
 import { TouchEvent, useEffect, useRef, useState, WheelEvent } from 'react'
 import { ScrollBarProps } from './scroll-bar'
-import debounce from '@/helper/debounce'
 
 const useScroll = ({ initScroll=0, onToScroll, os = 'X', valueScrool = 16 }: Omit<ScrollBarProps, 'onTransitionEnd'>) => {
     const refBar = useRef<HTMLDivElement>(null)
