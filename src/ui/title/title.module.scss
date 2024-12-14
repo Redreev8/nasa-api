@@ -27,4 +27,8 @@
         @include h6;
         margin-bottom: $g;
     }
+
+    @include phablet {
+        max-width: 100vw;
+    }
 }

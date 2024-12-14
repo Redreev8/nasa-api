@@ -21,6 +21,9 @@
         border-left: $border-line;
         border-right: $border-line;
     }
+    @include phablet {
+        max-width: 100vw;
+    }
 }
 
 .btn {

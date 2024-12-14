@@ -6,4 +6,7 @@
     @include text;
     max-width: 720px;
     margin: 0;
+    @include phablet {
+        max-width: 100vw;
+    }
 }
