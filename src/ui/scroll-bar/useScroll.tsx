@@ -24,8 +24,8 @@ const useScroll = ({ initScroll=0, onToScroll, os = 'X', valueScrool = 16 }: Omi
     }
     const hendalTouch = (e: TouchEvent<HTMLDivElement>) => {
         if (valueScrool === 0) return
-        if(e.touches[0][`client${os}`] < refTouch.current.prev) toScroll(1)
-        if(e.touches[0][`client${os}`] > refTouch.current.prev) toScroll(-1)
+        if(e.touches[0][`client${os}`] < refTouch.current.prev) toScroll(0.25)
+        if(e.touches[0][`client${os}`] > refTouch.current.prev) toScroll(-0.25)
         refTouch.current.prev = e.touches[0][`client${os}`]
     }
 
